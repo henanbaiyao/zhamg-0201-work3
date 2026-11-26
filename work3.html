@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>静夜灯下分享会 · Night Lamp Sharing</title>
+    <style>
+        /* =========================================================
+           学号末位：1
+           主题：静夜灯下分享会 · Night Lamp Sharing
+           .page 背景色：薄荷牛奶绿 #E8FFF4（只改了这一处）
+           ========================================================= */
+
+        /* 页面整体：body 只负责“衬托卡片 + 居中”，真正的卡片是下面的 .page */
+        body {
+            margin: 0;
+            padding: 48px 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #d5ece1, #f2fcf7);
+            font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.9;
+            color: #2f4640;
+            text-align: center;          /* 让 inline-block 的 .page 水平居中 */
+        }
+
+        /* 题目给定的 .page 样式：除 background-color 外一律不动 */
+        .page {
+            display: inline-block;
+            background-color: #E8FFF4;
+            box-shadow: 0 0 30px rgba(80, 58, 35, 0.25);
+            text-align: left;
+            max-width: 720px;
+        }
+
+        /* .page 自身不能加 padding，所以留白交给里面的 div */
+        .page > div {
+            padding-left: 46px;
+            padding-right: 46px;
+        }
+
+        /* ================= ① 顶部标题区 ================= */
+        .title-area {
+            padding-top: 46px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .kicker {
+            margin-bottom: 12px;
+            font-size: 12px;
+            letter-spacing: 5px;
+            color: #7c9f8f;
+        }
+
+        /* 并集选择器：统一六个标题的字体、颜色、字重与间距 */
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0 0 14px 0;
+            color: #1d5c4c;
+            font-family: "KaiTi", "STKaiti", "Kaiti SC", "SimSun", serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 17px;
+            letter-spacing: 3px;
+        }
+
+        /* ================= ② 活动介绍区 ================= */
+        .intro-area {
+            padding-top: 12px;
+        }
+
+        p {
+            margin: 0 0 14px 0;
+            text-indent: 2em;            /* 中文正文首行缩进 */
+        }
+
+        /* ID 选择器：只强调 <p id="intro">，h2#intro 不受影响 */
+        p#intro {
+            margin: 20px 0 0 0;
+            padding: 12px 16px;
+            border-left: 4px solid #d99a5b;
+            background-color: #fff4e4;
+            color: #9c4f22;
+            font-size: 16px;
+            font-weight: bold;
+            text-indent: 0;
+        }
+
+        /* ================= ③ 报名表格区 ================= */
+        .table-area {
+            padding-top: 22px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 8px;
+            border-collapse: collapse;
+            background-color: #fbfffd;
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        th, td {
+            padding: 9px 10px;
+            border: 1px solid #c2e7d8;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #cdeee0;
+            color: #174e40;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        table tr:nth-child(even) td {
+            background-color: #f3fffa;
+        }
+
+        table tr:hover td {
+            background-color: #e4f9ef;
+        }
+
+        /* 后代选择器：只有 div 里 table 里的链接才加粗、放大、改成点线 */
+        div table a {
+            font-size: 105%;
+            font-weight: bold;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+        }
+
+        /* ================= ④ 页面链接区 ================= */
+        .link-area {
+            margin-top: 26px;
+            padding-top: 18px;
+            padding-bottom: 26px;
+            border-top: 1px dashed #bfe5d5;
+        }
+
+        .link-box {
+            text-align: center;
+            line-height: 2.4;
+            font-size: 15px;
+        }
+
+        /* 链接伪类：未访问 / 已访问 / 悬停 / 按下 */
+        a:link {
+            color: #1e6b58;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        a:visited {
+            color: #6c5c8a;
+        }
+
+        a:hover {
+            color: #b06a34;
+        }
+
+        a:active {
+            color: #c0392b;
+        }
+
+        /* 带类名的链接：一红一蓝 */
+        a.red {
+            color: #c0392b;
+            letter-spacing: 1px;
+        }
+
+        a.blue {
+            color: #1f5fa8;
+            letter-spacing: 1px;
+        }
+
+        a.red:hover, a.blue:hover {
+            color: #b06a34;
+        }
+
+        /* ================= ⑤ 底部公告区 ================= */
+        .notice {
+            margin-top: 4px;
+            padding-top: 20px;
+            padding-bottom: 34px;
+            background-color: #dcf6ea;
+            font-size: 13px;
+            color: #48705f;
+            letter-spacing: 0.5px;
+        }
+
+        /* 伪元素：段落首字放大、换成主题深绿 */
+        p::first-letter {
+            font-size: 170%;
+            font-weight: bold;
+            color: #1d5c4c;
+            line-height: 1;
+        }
+
+        /* 伪元素：每个 div 的第一行加宽字距、换成稍浅的绿 */
+        div::first-line {
+            color: #2f7d68;
+            letter-spacing: 1.5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- ① 顶部标题区：div 内含 h1 主标题 -->
+    <div class="title-area">
+        <div class="kicker">城市夜读计划 · 第 12 期</div>
+        <h1>静夜灯下分享会 · Night Lamp Sharing</h1>
+    </div>
+
+    <!-- ② 活动介绍区：h2 + 两个 p + 一个 p#intro -->
+    <div class="intro-area">
+        <h2 id="intro">灯暗下来，故事就亮了</h2>
+
+        <p>晚上九点，城市的声音慢慢退潮。我们在图书馆三楼点亮几盏小台灯，桌上摆着热茶、旧书和几张写满字的便签；先用一小时安静地读，再用一小时，把书里最想分享的那一页读给身边的人听。</p>
+
+        <p>这里没有讲台，也不设标准答案。你可以带来一首诗、一段小说、一封没有寄出的信，甚至只是最近反复想起的一句话；灯下的每一次开口，都是把一个安静的夜晚，交给另一个人保管。</p>
+
+        <p id="intro">重要提示：本场仅设 20 个席位，请提前 10 分钟入场；入场后请把手机调至静音，灯下分享时请勿使用闪光灯拍照。</p>
+    </div>
+
+    <!-- ③ 活动报名信息表格区：h3 + table（表头 + 4 行数据） -->
+    <div class="table-area">
+        <h3>本期分享报名表</h3>
+
+        <table>
+            <tr>
+                <th>编号</th>
+                <th>分享人</th>
+                <th>分享主题</th>
+                <th>灯下书目</th>
+                <th>席位状态</th>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>沈知微</td>
+                <td>把一盏灯读成整个夜晚</td>
+                <td><a href="https://example.com/books/night-lamp">《夜灯手记》</a></td>
+                <td>已确认</td>
+            </tr>
+            <tr>
+                <td>02</td>
+                <td>周予安</td>
+                <td>旧信里的三种告别</td>
+                <td><a href="https://example.com/books/long-night-letters">《长夜书信》</a></td>
+                <td>已确认</td>
+            </tr>
+            <tr>
+                <td>03</td>
+                <td>林见鹿</td>
+                <td>诗在低声处</td>
+                <td><a href="https://example.com/books/night-flight">《夜航》</a></td>
+                <td>待确认</td>
+            </tr>
+            <tr>
+                <td>04</td>
+                <td>许南舟</td>
+                <td>深夜书店的十二位客人</td>
+                <td><a href="https://example.com/books/midnight-bookstore">《深夜书店》</a></td>
+                <td>候补</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ④ 页面链接区：一个 div 内含两条链接（一红一蓝） -->
+    <div class="link-area">
+        <div class="link-box">
+            <a class="red" href="https://hongchenwusdnu.github.io/bookstore/job4.html">查看往期活动照片</a><br>
+            <a class="blue" href="https://henanbaiyao.github.io/zhang0201-work2/">在线咨询活动详情</a>
+        </div>
+    </div>
+
+    <!-- ⑤ 底部公告区：div.notice 内三段公告 + br 换行 -->
+    <div class="notice">
+        公告：因场地检修，本次灯下分享会调整至 12 月 2 日（周二）19:30 举行，入场请走图书馆西侧小门。<br>
+        公告：现场提供热茶与一次性纸杯，欢迎自带水杯；散场后请把书放回原处，把椅子轻轻推回桌下。<br>
+        公告：11 月 30 日前报名的同学可在签到处领取一枚灯下书签；如需取消席位，请提前一天在线留言。
+    </div>
+
+</div>
+
+</body>
+</html>
